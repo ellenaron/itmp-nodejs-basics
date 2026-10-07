@@ -50,17 +50,11 @@ server.get('/api/users/:id', (req, res) => {
 server.post('/api/users', (req, res) => {
     const { name, email } = req.body;
 
-    try {
-        users.push({
-            id: users.length + 1,
-            name: name,
-            email: email,
-        });
+    con.connect(function(err) {
+        if (err) return res.status(500).send(err);
         
-        return res.status(201).send('Sikeresen létrehozva');
-    } catch (err) {
-        return res.status(500).send(err);
-    }
+        let sql = 'INSERT INTO '
+    })
 });
 
 const PORT = 8080;
